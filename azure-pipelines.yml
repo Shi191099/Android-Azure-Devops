@@ -10,6 +10,8 @@ pool:
 
 variables:
   GRADLE_OPTS: '-Dorg.gradle.daemon=false'
+  JAVA_HOME: $(JAVA_HOME_11_X64)  # Use the appropriate variable for Java 11
+
 
 stages:
 - stage: Build
@@ -17,10 +19,6 @@ stages:
   - job: BuildJob
     displayName: 'Build and Test'
     steps:
-    - task: UseJavaVersion@1
-      inputs:
-        versionSpec: '11'
-        addToPath: true
 
     - script: echo "Running Gradle clean"
       displayName: 'Clean Build'
